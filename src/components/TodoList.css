@@ -4,6 +4,36 @@
   padding: 20px;
 }
 
+.todo-list-header {
+  margin-bottom: 20px;
+  padding: 10px;
+  background-color: #282c34;
+  border-radius: 4px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.todo-count {
+  color: #61dafb;
+  font-size: 0.9em;
+  font-weight: bold;
+}
+
+.todo-filter {
+  padding: 5px;
+  border: 1px solid #61dafb;
+  border-radius: 4px;
+  background-color: #20232a;
+  color: #61dafb;
+  cursor: pointer;
+}
+
+.todo-filter:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(97, 218, 251, 0.3);
+}
+
 .todo-list-form {
   display: flex;
   gap: 10px;

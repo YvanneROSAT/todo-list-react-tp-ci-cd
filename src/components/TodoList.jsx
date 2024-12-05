@@ -15,6 +15,7 @@ function writeToLocaleStorage(todos) {
 function TodoList() {
   const [todos, setTodos] = useState(readFromLocaleStorage());
   const [inputValue, setInputValue] = useState('');
+  const [filter, setFilter] = useState('all');
 
   useEffect(() => writeToLocaleStorage(todos), [todos])
 
@@ -38,8 +39,45 @@ function TodoList() {
     setTodos(todos.filter((todo) => todo.id !== id));
   };
 
+  const clearCompleted = () => {
+    setTodos(todos.filter(todo => !todo.completed));
+  };
+
+  const remainingTasks = todos.filter(todo => !todo.completed).length;
+  const hasCompletedTasks = todos.some(todo => todo.completed);
+
+  const filteredTodos = todos.filter(todo => {
+    if (filter === 'active') return !todo.completed;
+    if (filter === 'completed') return todo.completed;
+    return true;
+  });
+
   return (
     <div className="todo-list">
+      <div className="todo-list-header">
+        <div className="todo-list-header-left">
+          <span className="todo-count">
+            {remainingTasks} {remainingTasks === 1 ? 'task' : 'tasks'} remaining
+          </span>
+          <select 
+            className="todo-filter"
+            value={filter}
+            onChange={(e) => setFilter(e.target.value)}
+          >
+            <option value="all">All</option>
+            <option value="active">Active</option>
+            <option value="completed">Completed</option>
+          </select>
+        </div>
+        {hasCompletedTasks && (
+          <button 
+            className="clear-completed-button"
+            onClick={clearCompleted}
+          >
+            Clear completed
+          </button>
+        )}
+      </div>
       <form className="todo-list-form" onSubmit={handleSubmit}>
         <input
           className="todo-list-input"
@@ -51,12 +89,12 @@ function TodoList() {
         <button className="todo-list-submit" type="submit">Add</button>
       </form>
       <ul className="todo-list-items">
-        {todos.length === 0 ? (
+        {filteredTodos.length === 0 ? (
           <li className="todo-list-empty">
             No todos yet! Add one to get started.
           </li>
         ) : (
-          todos.map((todo) => (
+          filteredTodos.map((todo) => (
             <TodoItem
               key={todo.id}
               todo={todo}
