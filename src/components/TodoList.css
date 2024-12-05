@@ -9,12 +9,31 @@
   padding: 10px;
   background-color: #282c34;
   border-radius: 4px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .todo-count {
   color: #61dafb;
   font-size: 0.9em;
   font-weight: bold;
+}
+
+.clear-completed-button {
+  padding: 5px 10px;
+  background-color: #20232a;
+  color: #61dafb;
+  border: 1px solid #61dafb;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9em;
+  transition: all 0.2s ease;
+}
+
+.clear-completed-button:hover {
+  background-color: #61dafb;
+  color: #20232a;
 }
 
 .todo-list-form {

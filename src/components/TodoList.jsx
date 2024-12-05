@@ -38,7 +38,12 @@ function TodoList() {
     setTodos(todos.filter((todo) => todo.id !== id));
   };
 
+  const clearCompleted = () => {
+    setTodos(todos.filter(todo => !todo.completed));
+  };
+
   const remainingTasks = todos.filter(todo => !todo.completed).length;
+  const hasCompletedTasks = todos.some(todo => todo.completed);
 
   return (
     <div className="todo-list">
@@ -46,6 +51,14 @@ function TodoList() {
         <span className="todo-count">
           {remainingTasks} {remainingTasks === 1 ? 'task' : 'tasks'} remaining
         </span>
+        {hasCompletedTasks && (
+          <button 
+            className="clear-completed-button"
+            onClick={clearCompleted}
+          >
+            Clear completed
+          </button>
+        )}
       </div>
       <form className="todo-list-form" onSubmit={handleSubmit}>
         <input
