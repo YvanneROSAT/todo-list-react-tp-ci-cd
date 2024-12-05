@@ -12,6 +12,8 @@ function TodoItem({ todo, onToggle, onDelete }) {
       />
       <span
         className="todo-item-text"
+        onClick={() => onToggle(todo.id)}
+        style={{ cursor: 'pointer' }}
       >
         {todo.text}
       </span>
