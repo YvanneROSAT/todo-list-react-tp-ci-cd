@@ -38,8 +38,15 @@ function TodoList() {
     setTodos(todos.filter((todo) => todo.id !== id));
   };
 
+  const remainingTasks = todos.filter(todo => !todo.completed).length;
+
   return (
     <div className="todo-list">
+      <div className="todo-list-header">
+        <span className="todo-count">
+          {remainingTasks} {remainingTasks === 1 ? 'task' : 'tasks'} remaining
+        </span>
+      </div>
       <form className="todo-list-form" onSubmit={handleSubmit}>
         <input
           className="todo-list-input"
