@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.1.0] - 2024-01-17
+
+### Features
+
+- Add ability to complete tasks by clicking on their text
+- Improve task text hover effects for better user experience
+
 ## [2.0.0] - 2024-01-17
 
 ### Features
